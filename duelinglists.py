@@ -1,20 +1,48 @@
-#Create two seperate lists for player one and player two. 
-#Each one should contain 10 random numbers between 1 and 50.
-#Do NOT sort the lists.
-#Compare the lists in order. Whichever list has the higher number wins.
-#Keep track of how many times each list wins.
-#Find the highest number in each list and it's index. If the number occers multiple times take the first instsance.
-#Find the lowest number in each list and it's index. If the number occers multiple times take the first instsance.
-#A tie is not record as a win for either player
-#Display the lists
-#Report to the user how many times each player won and the information from lines 6 and 7.
-#For the example output I am limiting the range to 1 to 9 to keep it more readable.
+#duelinglist.py
+#Justin Hensley
+#CSD 1510
+#3/16/25
+import random
+random.seed()
+player1 = 0
+player2 = 0
+p1_list = []
+p2_list = []
+#User prompt for battles.
+battles = int(input("How many battles? "))
+#For loop through battles.
+for i in range(battles):
+    p1 = random.randint(1,50)
+    p2 = random.randint(1,50)
+    p1_list.append(str(p1))
+    p2_list.append(str(p2))
+    #Figures the winner of battles.
+    if p1 > p2:
+        player1 += 1
+    else:
+        player2 += 1
+#Join list like food.py.
+player1_join = ", ".join(p1_list)
+player2_join = ", ".join(p2_list)
 
-#Player One = [5,7,2,9,1,1,3,8,6,9]
-#Player Two = [3,8,5,5,8,1,4,7,4,7]
-#Player one won 5 times
-#Player two won 4 times
-#Player one's highest number is 9 at index 3
-#Player two's highest number is 8 at index 1
-#Player one's lowest number is 1 at index 4
-#Player two's lowest number is 1 at index 5
+print(f"Player One results: {player1_join}")
+print(f"Player Two results: {player2_join}")
+
+print(f"Player One won: {player1}")
+print(f"Player Two won: {player2}")
+#Find player 1 index and highest score.
+largest_p1 = max([int(x) for x in p1_list])
+p1_dex = [int(x) for x in p1_list].index(largest_p1)
+print(f"Player One best score: {largest_p1} and it is in position: {p1_dex}")
+#Find player 2 index and highest score.
+largest_p2 = max([int(x) for x in p2_list])
+p2_dex = [int(x) for x in p2_list].index(largest_p2)
+print(f"Player Two best score: {largest_p2} and it is in position: {p2_dex}")
+#Find player 1 index and lowest score.
+smallest_p1 = min([int(x) for x in p1_list])
+p1_dex = [int(x) for x in p1_list].index(smallest_p1)
+print(f"Player One worst score: {smallest_p1} and it is in position: {p1_dex}")
+#Find player 2 index and lowest score.
+smallest_p2 = min([int(x) for x in p2_list])
+p2_dex = [int(x) for x in p2_list].index(smallest_p2)
+print(f"Player Two worst score: {smallest_p2} and it is in position: {p2_dex}")
